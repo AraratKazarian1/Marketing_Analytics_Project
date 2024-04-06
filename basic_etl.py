@@ -1,4 +1,5 @@
-from helae.database.data_preperation import SqlHandler
+from helae.database.schema import *
+from helae.database.sql_interactions import SqlHandler
 from helae.database.logger import CustomFormatter
 import pandas as pd
 
