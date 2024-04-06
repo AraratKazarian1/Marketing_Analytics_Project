@@ -41,13 +41,11 @@ class companies(Base):
     district = Column(String)
     email = Column(String)
 
-# class Product(Base):
-#     __tablename__ = "products"
+class price_list(Base):
+    __tablename__ = "price_list"
 
-#     product_id = Column(Integer, primary_key=True)
-#     product_name = Column(String)
-#     price = Column(Float)
-#     description = Column(String)
-#     category = Column(String)
+    product_id = Column(Integer, primary_key=True)
+    product_name = Column(String)
+    price = Column(Float)
 
 Base.metadata.create_all(engine)
