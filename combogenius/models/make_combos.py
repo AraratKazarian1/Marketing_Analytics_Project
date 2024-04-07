@@ -2,7 +2,7 @@ import sqlite3
 import pandas as pd
 from itertools import combinations
 from collections import Counter
-import numpy as np
+import numpy as np 
 
 class combos:
     def __init__(self):
@@ -29,7 +29,7 @@ class combos:
         
         for i in range(3, 5):
             for j in range(2, int(np.sqrt(len(sorted_frequency_table)))):
-                # Convert 'Order' column to strings
+                # Convert 'Order' column to strings 
                 sorted_frequency_table['Products'] = sorted_frequency_table['Products'].astype(str)
                 
                 mask = sorted_frequency_table['Products'].apply(lambda x: self.has_multiple_components(x, i))
@@ -38,7 +38,7 @@ class combos:
                 
                 filtered_table.drop(filtered_table[filtered_table['Frequency'] < j].index, inplace=True)
                 
-                length = len(filtered_table)
+                length = len(filtered_table) 
                 if length <= k:
                     return filtered_table  # Return immediately if the condition is met
                 
