@@ -1,0 +1,22 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Email List</title>
+</head>
+<body>
+    <h1>Email List</h1>
+    <ul>
+        {% for email in emails %}
+        <li>
+            {{ email['email'] }} - {{ email['message'] }} - 
+            {% if email['clicked'] == 0 %}
+                <a href="/mark_clicked/{{ email['id'] }}">Click Here</a>
+            {% else %}
+                Link already clicked
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
