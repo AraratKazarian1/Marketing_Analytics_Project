@@ -66,4 +66,7 @@ async def update_email(old_email: str, new_email: str):
         return {"error": str(e)}
 
 def run_api():
+    """Run API for sending emails.
+
+    """
     uvicorn.run(app, host="127.0.0.1", port=5000,)
