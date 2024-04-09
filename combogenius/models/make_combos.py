@@ -52,3 +52,4 @@ class combos:
         filtered_table.drop(filtered_table[filtered_table['Frequency'] < best_j].index, inplace=True)
         
         return filtered_table
+
