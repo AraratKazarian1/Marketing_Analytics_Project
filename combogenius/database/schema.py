@@ -5,7 +5,7 @@ import logging
 import os
 
 import logging
-from .logger import CustomFormatter
+from ..logger import CustomFormatter
 
 logger = logging.getLogger(os.path.basename(__file__))
 logger.setLevel(logging.DEBUG)

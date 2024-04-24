@@ -1,7 +1,7 @@
 site_name: ComboGenius Documentation
 site_url: https://github.com/AraratKazarian1/Marketing_Analytics_Project_Group5
 theme:
-  name: material
+  name: mkdocs
   features:
     - navigation.tabs
     - navigation.sections
@@ -12,7 +12,9 @@ theme:
     - content.tabs.link
     - content.code.annotation
     - content.code.copy
+
   language: en
+  
   palette:
     - scheme: default
       toggle:
