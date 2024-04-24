@@ -1,6 +1,6 @@
 from combogenius.database.schema import *
 from combogenius.database.sql_interactions import SqlHandler
-from combogenius.database.logger import CustomFormatter
+from combogenius.logger import CustomFormatter
 from combogenius.models.make_combos import combos
 import pandas as pd
 
