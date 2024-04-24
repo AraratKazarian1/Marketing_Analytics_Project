@@ -101,10 +101,6 @@ class SqlHandler:
         
         logger.warning('the data is loaded')
 
-    def from_sql_to_pandas(self, )-> pd.DataFrame:
-        pass
-        #TODO: do it by yourself
-
     def from_sql_to_pandas(self, chunksize:int, id_value:str) -> pd.DataFrame:
         """
 
@@ -133,13 +129,42 @@ class SqlHandler:
 
         return df
 
+    def update_table(dbname, table_name, set_values, condition):
+        """
+        Update records in the specified table based on the provided condition.
 
-    def update_table(self,condition):
-        pass
-        # TODO: complete on your own
+        Args:
+        dbname (str): The database name.
+        table_name (str): The table to update.
+        set_values (dict): A dictionary where keys are column names and values are the new data for these columns.
+        condition (str): A SQL condition string for the WHERE clause.
 
-   
+        Returns:
+        None
+        """
+        # Connect to the SQLite database
+        connection = sqlite3.connect(f'{dbname}.db')
+        cursor = connection.cursor()
         
+        # Prepare the SET part of the SQL update statement
+        set_clause = ', '.join([f"{key} = ?" for key in set_values.keys()])
+        values = list(set_values.values())
+        
+        # Prepare the SQL update query
+        query = f"UPDATE {table_name} SET {set_clause} WHERE {condition}"
+        try:
+            cursor.execute(query, values)
+            connection.commit()
+            logger.info(f"Rows updated: {cursor.rowcount}")
+        except sqlite3.Error as e:
+            logger.error(f"An error occurred: {e}")
+        finally:
+            cursor.close()
+            connection.close()
+            logger.info("Database connection closed.")
+
+    
+            
 
 
 
