@@ -60,74 +60,54 @@ class SqlHandler:
         logger.debug('using drop table function')
 
     def insert_many(self, df:pd.DataFrame) -> str:
-        
-        df=df.replace(np.nan, None) # for handling NULLS
-        df.rename(columns=lambda x: x.lower(), inplace=True)
-        columns = list(df.columns)
-        logger.info(f'BEFORE the column intersection: {columns}')
-        sql_column_names = [i.lower() for i in self.get_table_columns()]
-        columns = list(set(columns) & set(sql_column_names))
-        logger.info(f'AFTER the column intersection: {columns}')
-        ncolumns=list(len(columns)*'?')
-        data_to_insert=df.loc[:,columns]
-    
-        values=[tuple(i) for i in data_to_insert.values]
-        logger.info(f'the shape of the table which is going to be imported {data_to_insert.shape}')
-        # if 'geometry' in columns: #! This block is usefull in case of geometry/geography data types
-        #     df['geometry'] = df['geometry'].apply(lambda geom: dumps(geom))
-        #     ncolumns[columns.index('geometry')]= 'geography::STGeomFromText(?, 4326)'
-        
-        if len(columns)>1:
-            cols,params =', '.join(columns), ', '.join(ncolumns)
-        else:
-            cols,params =columns[0],ncolumns[0]
-            
-        logger.info(f'insert structure: colnames: {cols} params: {params}')
-        logger.info(values[0])
-        query=f"""INSERT INTO  {self.table_name} ({cols}) VALUES ({params});"""
-        
-        logger.info(f'QUERY: {query}')
-
-        self.cursor.executemany(query, values)
         try:
-            for i in self.cursor.messages:
-                logger.info(i)
-        except:
-            pass
+            chunksize = 1000  # Adjust as needed
+            total_rows = df.shape[0]
+            num_chunks = (total_rows + chunksize - 1) // chunksize  # Ceiling division to get the number of chunks
 
+            for i in range(num_chunks):
+                start_idx = i * chunksize
+                end_idx = min((i + 1) * chunksize, total_rows)
+                chunk_df = df.iloc[start_idx:end_idx]
 
-        self.cnxn.commit()
-      
-        
-        logger.warning('the data is loaded')
+                chunk_df = chunk_df.replace(np.nan, None) # for handling NULLS
+                chunk_df.rename(columns=lambda x: x.lower(), inplace=True)
+                columns = list(chunk_df.columns)
+                logger.info(f'BEFORE the column intersection: {columns}')
+                sql_column_names = [i.lower() for i in self.get_table_columns()]
+                columns = list(set(columns) & set(sql_column_names))
+                logger.info(f'AFTER the column intersection: {columns}')
+                ncolumns = list(len(columns) * '?')
+                data_to_insert = chunk_df.loc[:, columns]
 
-    def from_sql_to_pandas(self, chunksize:int, id_value:str) -> pd.DataFrame:
-        """
+                values = [tuple(i) for i in data_to_insert.values]
+                logger.info(f'the shape of the table which is going to be imported {data_to_insert.shape}')
+                if len(columns) > 1:
+                    cols, params = ', '.join(columns), ', '.join(ncolumns)
+                else:
+                    cols, params = columns[0], ncolumns[0]
 
-        """
-        
-        offset=0
-        dfs=[]
-       
-        
-        while True:
-            query=f"""
-            SELECT * FROM {self.table_name}
-                ORDER BY {id_value}
-                OFFSET  {offset}  ROWS
-                FETCH NEXT {chunksize} ROWS ONLY  
-            """
-            data = pd.read_sql_query(query,self.cnxn) 
-            logger.info(f'the shape of the chunk: {data.shape}')
-            dfs.append(data)
-            offset += chunksize
-            if len(dfs[-1]) < chunksize:
-                logger.warning('loading the data from SQL is finished')
-                logger.debug('connection is closed')
-                break
-        df = pd.concat(dfs)
+                logger.info(f'insert structure: colnames: {cols} params: {params}')
+                logger.info(values[0])
+                query = f"""INSERT INTO  {self.table_name} ({cols}) VALUES ({params});"""
 
-        return df
+                logger.info(f'QUERY: {query}')
+
+                self.cursor.executemany(query, values)
+                try:
+                    for i in self.cursor.messages:
+                        logger.info(i)
+                except:
+                    pass
+
+            self.cnxn.commit()
+            logger.warning('the data is loaded')
+        except sqlite3.IntegrityError as e:
+            logger.error(f"An IntegrityError occurred: {e}")
+            self.cnxn.rollback()
+        except Exception as e:
+            logger.error(f"An error occurred: {e}")
+            self.cnxn.rollback()
 
     def update_table(dbname, table_name, set_values, condition):
         """
@@ -162,9 +142,3 @@ class SqlHandler:
             cursor.close()
             connection.close()
             logger.info("Database connection closed.")
-
-    
-            
-
-
-
