@@ -1,8 +1,8 @@
 import uvicorn
 import sqlite3
 from fastapi import FastAPI, BackgroundTasks
-from .config import MailBody
-from .mailer import send_mail
+from config import MailBody
+from mailer import send_mail
 
 app = FastAPI()
 

@@ -23,3 +23,7 @@ Inst.close_cnxn()
 m = combos()
 f = m.make_combos(5)
 print(f)
+
+m.visualize_most_frequent_combos()
+m.visualize_expensive_combos()
+m.visualize_cheap_combos()

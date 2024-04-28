@@ -1,4 +1,4 @@
-from .config import HOST, USERNAME, PASSWORD, PORT, MailBody
+from config import HOST, USERNAME, PASSWORD, PORT, MailBody
 from ssl import create_default_context
 from email.mime.text import MIMEText
 from smtplib import SMTP

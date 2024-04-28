@@ -70,10 +70,25 @@ class combos:
         plt.xticks(rotation=45)
         plt.show()
 
+    def calculate_combo_price(self, combo):
+        items = combo.split('/')
+        total_price = 0
+        for item in items:
+            price = self.price_df.loc[self.price_df['product_name'] == item, 'price'].values
+            total_price += price[0] if len(price) > 0 else 0
+        return total_price
+
     def visualize_expensive_combos(self, top_n=5):
-        sorted_table = self.make_combos(discount=0)
-        top_expensive_combos = sorted_table.nlargest(top_n, 'Combo_Price')
-        top_expensive_combos.plot(kind='bar', x='Products', y='Combo_Price', figsize=(10, 6), color='salmon')
+        combos_df = self.make_combos(discount=0)
+        
+        # Calculate prices for each combo
+        combos_df['Combo_Price'] = combos_df['Products'].apply(lambda x: self.calculate_combo_price(x))
+        
+        # Sort by combo price
+        sorted_combos = combos_df.nlargest(top_n, 'Combo_Price')
+        
+        # Plot the top expensive combos
+        sorted_combos.plot(kind='bar', x='Products', y='Combo_Price', figsize=(10, 6), color='salmon')
         plt.title('Top {} Expensive Combos'.format(top_n))
         plt.xlabel('Combo')
         plt.ylabel('Price')
@@ -81,15 +96,19 @@ class combos:
         plt.show()
 
     def visualize_cheap_combos(self, top_n=5):
-        sorted_table = self.make_combos(discount=0)
-        top_cheap_combos = sorted_table.nsmallest(top_n, 'Combo_Price')
-        top_cheap_combos.plot(kind='bar', x='Products', y='Combo_Price', figsize=(10, 6), color='lightgreen')
+        combos_df = self.make_combos(discount=0)
+        
+        # Calculate prices for each combo
+        combos_df['Combo_Price'] = combos_df['Products'].apply(lambda x: self.calculate_combo_price(x))
+        
+        # Sort by combo price
+        sorted_combos = combos_df.nsmallest(top_n, 'Combo_Price')
+        
+        # Plot the top cheap combos
+        sorted_combos.plot(kind='bar', x='Products', y='Combo_Price', figsize=(10, 6), color='lightgreen')
         plt.title('Top {} Cheap Combos'.format(top_n))
         plt.xlabel('Combo')
         plt.ylabel('Price')
         plt.xticks(rotation=45)
         plt.show()
 
-#combos_instance = combos()
-#combos_instance.make_combos()
-#combos_instance.visualize_most_frequent_combos()
