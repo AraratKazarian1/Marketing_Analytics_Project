@@ -1,8 +1,8 @@
 import uvicorn
 import sqlite3
 from fastapi import FastAPI, BackgroundTasks
-from config import MailBody
-from mailer import send_mail
+from .config import MailBody
+from .mailer import send_mail
 
 app = FastAPI()
 
@@ -31,16 +31,6 @@ async def mark_interested(email: str):
     except Exception as e:
         return {"error": str(e)}
     
-@app.put("/update_email/")
-async def update_email(old_email: str, new_email: str):
-    try:
-        # Update email address in the database
-        c.execute("UPDATE emails SET email = ? WHERE email = ?", (new_email, old_email,))
-        conn.commit()
-        return {"message": f"Email address updated from {old_email} to {new_email}"}
-    except Exception as e:
-        return {"error": str(e)}
-
 def run_api():
     """Run API for sending emails.
 
