@@ -51,7 +51,7 @@ class SqlHandler:
         
         column_names = [col[1] for col in columns]
         logger.info(f'the list of columns: {column_names}')
-        self.cursor.close()
+        #self.cursor.close()
 
         return column_names
     
@@ -62,7 +62,7 @@ class SqlHandler:
         query=f"DROP TABLE IF EXISTS {self.table_name};"
         self.cursor.execute(query)
         logging.info(f'the {self.table_name} is truncated')
-        self.cursor.close()
+        #self.cursor.close()
 
     def drop_table(self):
         """_summary_

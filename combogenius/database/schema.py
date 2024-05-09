@@ -43,6 +43,6 @@ class price_list(Base):
     __tablename__ = "price_list"
     product_id = Column(Integer, primary_key=True)
     product_name = Column(String)
-    price = Column(Float)
+    price = Column(Integer)
 
 Base.metadata.create_all(engine)

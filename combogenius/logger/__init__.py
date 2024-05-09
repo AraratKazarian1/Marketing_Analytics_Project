@@ -1,3 +1,3 @@
-from logger import CustomFormatter
+from .logger import CustomFormatter
 
 

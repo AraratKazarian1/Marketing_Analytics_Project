@@ -1,13 +1,13 @@
 from combogenius.database.schema import *
 from combogenius.database.sql_interactions import SqlHandler
-from combogenius.logger import CustomFormatter
+from combogenius.logger.logger import CustomFormatter
 from combogenius.models.make_combos import combos
 import pandas as pd
 
 #  Create the database and load the data
-Inst=SqlHandler('database', 'checks')
-Inst1=SqlHandler('database', 'companies')
-Inst2=SqlHandler('database', 'price_list')
+Inst  = SqlHandler('database', 'checks')
+Inst1 = SqlHandler('database', 'companies')
+Inst2 = SqlHandler('database', 'price_list')
 
 data=pd.read_csv('data/data.csv')
 companies = pd.read_csv('data/companies.csv')
@@ -23,6 +23,8 @@ Inst.close_cnxn()
 m = combos()
 f = m.make_combos(5)
 print(f)
+
+m.calculate_combo_price(f.iloc[0])
 
 m.visualize_most_frequent_combos()
 m.visualize_expensive_combos()

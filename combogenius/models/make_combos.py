@@ -65,8 +65,7 @@ class combos:
         combo_price = 0
         for product in products:
             price = self.price_df.loc[self.price_df['product_name'] == product, 'price'].values
-            if len(price) > 0:
-                combo_price += price[0]
+            combo_price += price
         return combo_price * (1 - discount / 100)
 
     def make_combos(self, k: int = 10, discount: float = 10) -> pd.DataFrame:
@@ -78,7 +77,7 @@ class combos:
             discount (float): The discount percentage to be applied (default is 10%).
 
         Returns:
-            DataFrame: A DataFrame containing the generated combos and their frequencies.
+            DataFrame: A DataFrame containing the generated combos, their frequencies, and prices.
         """
         unique_products = set(self.df['products'])
         product_frequencies = Counter(unique_products)
@@ -113,10 +112,11 @@ class combos:
         filtered_table = sorted_frequency_table[mask].copy()
         filtered_table.drop(filtered_table[filtered_table['Frequency'] < best_j].index, inplace=True)
 
+        # Calculate prices for each combo
         filtered_table['Combo_Price'] = filtered_table['Products'].apply(lambda x: self.calculate_combo_price(x.split('/'), discount))
 
         return filtered_table
-
+                                                
     def visualize_most_frequent_combos(self, top_n: int = 5):
         """
         Visualizes the top most frequent combos in a bar chart.
