@@ -15,12 +15,21 @@ logger.addHandler(ch)
 class SqlHandler:
 
     def __init__(self, dbname:str,table_name:str) -> None:
+        """_summary_
+
+        Args:
+            dbname (str): _description_
+            table_name (str): _description_
+        """        
+        
         self.cnxn=sqlite3.connect(f'{dbname}.db')
         self.cursor=self.cnxn.cursor()
         self.dbname=dbname
         self.table_name=table_name
 
     def close_cnxn(self)->None:
+        """_summary_
+        """        
 
         logger.info('commiting the changes')
         self.cursor.close()
@@ -31,35 +40,50 @@ class SqlHandler:
         pass
 
     def get_table_columns(self)->list:
+        """
+
+        Returns:
+            list: _description_
+        """        
+
         self.cursor.execute(f"PRAGMA table_info({self.table_name});")
         columns = self.cursor.fetchall()
         
         column_names = [col[1] for col in columns]
         logger.info(f'the list of columns: {column_names}')
-        # self.cursor.close()
+        self.cursor.close()
 
         return column_names
     
     def truncate_table(self)->None:
+        """_summary_
+        """        
         
         query=f"DROP TABLE IF EXISTS {self.table_name};"
         self.cursor.execute(query)
         logging.info(f'the {self.table_name} is truncated')
-        # self.cursor.close()
+        self.cursor.close()
 
     def drop_table(self):
+        """_summary_
+        """        
         
         query = f"DROP TABLE IF EXISTS {self.table_name};"
         logging.info(query)
-
         self.cursor.execute(query)
-
         self.cnxn.commit()
-
         logging.info(f"table '{self.table_name}' deleted.")
         logger.debug('using drop table function')
 
     def insert_many(self, df:pd.DataFrame) -> str:
+        """_summary_
+
+        Args:
+            df (pd.DataFrame): _description_
+
+        Returns:
+            str: _description_
+        """        
         try:
             chunksize = 1000  # Adjust as needed
             total_rows = df.shape[0]
