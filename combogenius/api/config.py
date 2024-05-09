@@ -3,7 +3,6 @@ from dotenv import load_dotenv
 from typing import List
 from pydantic import BaseModel
 
-
 load_dotenv()
 
 HOST = os. environ.get("MAIL_HOST")

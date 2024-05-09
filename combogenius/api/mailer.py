@@ -1,25 +1,21 @@
 from combogenius.api.config import HOST, USERNAME, PASSWORD, PORT, MailBody
 from ssl import create_default_context
 from email.mime.text import MIMEText
-from smtplib import SMTP
+from email.mime.multipart import MIMEMultipart
+import smtplib
 
-def send_mail(data: dict):
-    msg = MailBody(**data)
-    message = MIMEText(msg.body, "html")
-    message["From"] = USERNAME
-    message["To"] = ",".join(msg.to)
-    message["Subject"] = msg.subject
+def send_email(recipient, subject, html_content):
+    # Email Content
+    msg = MIMEMultipart()
+    msg['From'] = USERNAME
+    msg['To'] = recipient
+    msg['Subject'] = subject
 
-    ctx = create_default_context()
+    # Attach HTML content
+    msg.attach(MIMEText(html_content, 'html'))
 
-    try:
-        with SMTP(HOST, PORT) as server:
-            server.ehlo()
-            server.starttls(context=ctx)
-            server.ehlo()
-            server.login(USERNAME, PASSWORD)
-            server.send_message(message)
-            server.quit()
-        return {"status": 200, "errors": None}
-    except Exception as e:
-        return {"status": 500, "errors": e}
+    # SMTP Connection and Sending Email
+    with smtplib.SMTP(HOST, PORT) as server:
+        server.starttls()
+        server.login(USERNAME, PASSWORD)
+        server.sendmail(USERNAME, recipient, msg.as_string())
