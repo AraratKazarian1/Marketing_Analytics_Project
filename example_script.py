@@ -14,6 +14,7 @@ companies = pd.read_csv('data/companies.csv')
 price_list = pd.read_csv('data/price_list.csv')
 
 Inst.insert_many(data)
+
 Inst1.insert_many(companies)
 Inst2.insert_many(price_list)
 
