@@ -9,9 +9,9 @@ Inst  = SqlHandler('database', 'checks')
 Inst1 = SqlHandler('database', 'companies')
 Inst2 = SqlHandler('database', 'price_list')
 
-data=pd.read_csv('data/data.csv')
-companies = pd.read_csv('data/companies.csv')
-price_list = pd.read_csv('data/price_list.csv')
+data=pd.read_csv('sample_data/data.csv')
+companies = pd.read_csv('sample_data/companies.csv')
+price_list = pd.read_csv('sample_data/price_list.csv')
 Inst.insert_many(data)
 
 Inst1.insert_many(companies)
