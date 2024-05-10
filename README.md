@@ -11,6 +11,9 @@ To address this problem, a data-driven approach can be implemented across variou
 
 Implementing these methods is expected to lead to increased corporate collaborations and improved interaction with potential B2B clients. Restaurants and food courts can anticipate greater customer satisfaction and higher conversion rates by customizing offerings and messaging based on data-driven insights. Moreover, these strategies can be applied beyond individual businesses, offering opportunities for improvement across the restaurant industry through metrics such as email campaign response rates and A/B testing results.
 
+## Package Documentation
+https://araratkazarian1.github.io/Marketing_Analytics_Project_Group5/
+
 ## API Endpoints
 Endpoint to check if the FastAPI server is running - http://127.0.0.1:5000/ <br>
 Endpoint to send an email to the specified recipient - http://127.0.0.1:5000/send_email/?recipient=ararat_kazarian%40edu.aua.am&subject=New%20Combo&discount=20 <br>
