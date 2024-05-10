@@ -24,8 +24,6 @@ m = combos()
 f = m.make_combos(5)
 print(f)
 
-m.calculate_combo_price(f.iloc[0])
-
 m.visualize_most_frequent_combos()
 m.visualize_expensive_combos()
 m.visualize_cheap_combos()

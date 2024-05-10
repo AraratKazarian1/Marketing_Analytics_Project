@@ -13,14 +13,24 @@ ch.setFormatter(CustomFormatter())
 logger.addHandler(ch)
 
 class SqlHandler:
+    """
+    A class to handle SQLite database operations.
+
+    Attributes:
+        dbname (str): The name of the SQLite database.
+        table_name (str): The name of the table within the database.
+        cnxn (sqlite3.Connection): The SQLite database connection object.
+        cursor (sqlite3.Cursor): The SQLite cursor object.
+    """
 
     def __init__(self, dbname:str,table_name:str) -> None:
-        """_summary_
+        """
+        Initializes the SqlHandler class.
 
         Args:
-            dbname (str): _description_
-            table_name (str): _description_
-        """        
+            dbname (str): The name of the SQLite database.
+            table_name (str): The name of the table within the database.
+        """   
         
         self.cnxn=sqlite3.connect(f'{dbname}.db')
         self.cursor=self.cnxn.cursor()
@@ -28,23 +38,24 @@ class SqlHandler:
         self.table_name=table_name
 
     def close_cnxn(self)->None:
-        """_summary_
-        """        
+        """
+        Closes the database connection.
 
+        Returns:
+            None
+        """
         logger.info('commiting the changes')
         self.cursor.close()
         self.cnxn.close()
         logger.info('the connection has been closed')
 
-    def insert_one()->None:
-        pass
-
     def get_table_columns(self)->list:
         """
+        Retrieves the list of column names in the table.
 
         Returns:
-            list: _description_
-        """        
+            list: List of column names.
+        """  
 
         self.cursor.execute(f"PRAGMA table_info({self.table_name});")
         columns = self.cursor.fetchall()
@@ -56,18 +67,24 @@ class SqlHandler:
         return column_names
     
     def truncate_table(self)->None:
-        """_summary_
-        """        
-        
+        """
+        Truncates the table by dropping all rows.
+
+        Returns:
+            None
+        """
         query=f"DROP TABLE IF EXISTS {self.table_name};"
         self.cursor.execute(query)
         logging.info(f'the {self.table_name} is truncated')
         #self.cursor.close()
 
     def drop_table(self):
-        """_summary_
-        """        
-        
+        """
+        Drops the entire table from the database.
+
+        Returns:
+            None
+        """   
         query = f"DROP TABLE IF EXISTS {self.table_name};"
         logging.info(query)
         self.cursor.execute(query)
@@ -76,14 +93,15 @@ class SqlHandler:
         logger.debug('using drop table function')
 
     def insert_many(self, df:pd.DataFrame) -> str:
-        """_summary_
+        """
+        Inserts multiple rows into the table from a DataFrame.
 
         Args:
-            df (pd.DataFrame): _description_
+            df (pd.DataFrame): DataFrame containing the data to be inserted.
 
         Returns:
-            str: _description_
-        """        
+            str: Message indicating the status of the operation.
+        """      
         try:
             chunksize = 1000  # Adjust as needed
             total_rows = df.shape[0]

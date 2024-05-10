@@ -4,7 +4,7 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from fastapi import FastAPI
-import os 
+import os
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -20,7 +20,18 @@ app = FastAPI()
 conn = sqlite3.connect('database.db')
 c = conn.cursor()
 
-def generate_html_template(combos, discount, custom_html):
+def generate_html_template(combos: list, discount: int, custom_html: str) -> str:
+    """
+    Generates an HTML template for email content.
+
+    Args:
+        combos (list): List of dictionaries containing combo information.
+        discount (int): Discount percentage to be applied.
+        custom_html (str): Custom HTML content if provided.
+
+    Returns:
+        str: Generated HTML content for the email.
+    """
     combos_html = ""
     for combo in combos:
         combo_html = f"""
@@ -107,19 +118,33 @@ def generate_html_template(combos, discount, custom_html):
     return html_content
 
 @app.get("/")
-def index():
+def index() -> dict:
+    """
+    Endpoint to check if the FastAPI mailserver is running.
+
+    Returns:
+        dict: A dictionary indicating the status of the server.
+    """
     return {"status": "fastapi mailserver is running"}
 
 @app.post("/send_email/")
-def send_email(recipient:str, subject: str, discount: int, custom_html: str = None):
+def send_email(recipient: str, subject: str, discount: int, custom_html: str = None) -> dict:
+    """
+    Sends an email to the specified recipient.
+
+    Args:
+        recipient (str): Email address of the recipient.
+        subject (str): Subject of the email.
+        discount (int): Discount percentage to be applied.
+        custom_html (str): Custom HTML content for the email (optional).
+
+    Returns:
+        dict: A message indicating the status of the email sending process.
+    """
     # Database Connection
     conn = sqlite3.connect('database.db')
     c = conn.cursor()
     c.execute("SELECT email FROM companies")
-
-    # emails = c.fetchall()
-    # for i in emails:
-    #     send_email(i, subject, html_content)
 
     # Generate Combos
     combos = [
@@ -149,7 +174,16 @@ def send_email(recipient:str, subject: str, discount: int, custom_html: str = No
     return {"message": "Emails sent successfully"}
 
 @app.get("/mark_interested/{email}")
-async def mark_interested(email: str):
+async def mark_interested(email: str) -> dict:
+    """
+    Marks an email as interested in the database.
+
+    Args:
+        email (str): Email address to mark as interested.
+
+    Returns:
+        dict: A message indicating the status of the operation.
+    """
     try:
         # Update interested column in the database
         c.execute("UPDATE companies SET clicked = 1 WHERE email = ?", (email,))
@@ -157,7 +191,9 @@ async def mark_interested(email: str):
         return {"message": f"Email {email} marked as interested"}
     except Exception as e:
         return {"error": str(e)}
-    
-def run_api():
-    """Run API for sending emails."""
+
+def run_api() -> None:
+    """
+    Runs the FastAPI server for sending emails.
+    """
     uvicorn.run(app, host="127.0.0.1", port=5000,)
