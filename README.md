@@ -1,30 +1,23 @@
-Degusto Food Studio - B2B Corporate Lunch Services
+# ComboGenius 
+## Problem
 
-Overview
-Degusto Food Studio is improving corporate lunch service offerings by growing its recently launched B2B website. Degusto struggles with client involvement and market awareness while producing high-quality items. Our data-driven strategy is to improve communication tactics and product offerings in order to foster more business partnerships.
+Many restaurants and food courts face challenges when it comes to expanding their corporate lunch service market through B2B websites. Despite offering great value and quality products, these businesses struggle with visibility among potential clients. The main issue lies in the lack of effective engagement strategies, making it difficult to showcase their benefits and attract new customers.
 
-Problem
+## Solution
 
-Degusto's lack of engagement tactics makes it difficult for the company to become visible to prospective corporate clients. This difficulty has impacted client acquisition and growth by making it challenging to properly communicate the company's benefits to the intended demographic.
+To address this problem, a data-driven approach can be implemented across various restaurant and food court businesses. This approach involves two key strategies: enhancing product offerings by analyzing sales data and optimizing communication through targeted email interactions. Specific actions include gathering data on potential clients, analyzing customer preferences to develop appealing combos, and refining marketing communications to increase engagement rates.
 
-Solution
+## Expected Outcomes
 
-Our data-driven strategy will include the following:
-Product enhancement: Creating lunch combinations that are visually appealing by examining previous sales data.
-Improved Communication: Employing site scraping to obtain information about possible client organisations in order to implement automated, targeted, and customised email exchanges.
+Implementing these methods is expected to lead to increased corporate collaborations and improved interaction with potential B2B clients. Restaurants and food courts can anticipate greater customer satisfaction and higher conversion rates by customizing offerings and messaging based on data-driven insights. Moreover, these strategies can be applied beyond individual businesses, offering opportunities for improvement across the restaurant industry through metrics such as email campaign response rates and A/B testing results.
 
-Expected Outcomes
+## Package Documentation
+https://araratkazarian1.github.io/Marketing_Analytics_Project_Group5/
 
-Our strategies are intended to:
-Boost Business Partnerships: Improving Communication with Possible B2B Customers.
-Increasing customer satisfaction via making data-driven adjustments to communications and products provided. 
+## API Endpoints
+Endpoint to check if the FastAPI server is running - http://127.0.0.1:5000/ <br>
+Endpoint to send an email to the specified recipient - http://127.0.0.1:5000/send_email/?recipient=ararat_kazarian%40edu.aua.am&subject=New%20Combo&discount=20 <br>
+Endpoint to mark an email in the database as interested - http://127.0.0.1:5000/mark_interested/ararat_kazarian%40edu.aua.am <br>
 
-For further expectations we plan to apply A/B testing to increase conversion rates, using metrics such as email response rates and effectiveness of the created newsletter types.
-
-Contribution
-
-This project is not only a solution for Degusto but also serves as a versatile framework that can be adapted for use in other B2B restaurant services or product optimization challenges. Organizations looking to leverage similar strategies can customize this framework by integrating their specific business requirements and historical data.
-
-
-# Marketing_Analytics_Project
+## PyPi Link
 https://pypi.org/project/combogenius/
