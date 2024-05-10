@@ -6,6 +6,7 @@ import pandas as pd
 
 #  Create the database and load the data
 Inst  = SqlHandler('database', 'checks')
+
 Inst1 = SqlHandler('database', 'companies')
 Inst2 = SqlHandler('database', 'price_list')
 
