@@ -1,10 +1,13 @@
+# Example usage
+
+# Import the necessary functions from the package
 from combogenius.database.schema import *
 from combogenius.database.sql_interactions import SqlHandler
 from combogenius.logger.logger import CustomFormatter
 from combogenius.models.make_combos import combos
 import pandas as pd
 
-#  Create the database and load the data
+# Create the database and load the data
 Inst  = SqlHandler('database', 'checks')
 Inst1 = SqlHandler('database', 'companies')
 Inst2 = SqlHandler('database', 'price_list')
@@ -19,11 +22,12 @@ Inst2.insert_many(price_list)
 
 Inst.close_cnxn()
 
-#  Make new combos
+# Make new combos
 m = combos()
 f = m.make_combos(5)
 print(f)
 
+# Make visualizations
 m.visualize_most_frequent_combos()
 m.visualize_expensive_combos()
 m.visualize_cheap_combos()
