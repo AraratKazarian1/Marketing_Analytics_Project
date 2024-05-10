@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Database - ComboGenius Documentation</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Database";
+        var mkdocs_page_input_path = "Database.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> ComboGenius Documentation
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../API/">API</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Database</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#combogenius.database.schema">schema</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#combogenius.database.schema.checks">checks</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#combogenius.database.schema.companies">companies</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#combogenius.database.schema.price_list">price_list</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#combogenius.database.sql_interactions">sql_interactions</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#combogenius.database.sql_interactions.SqlHandler">SqlHandler</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#combogenius.database.sql_interactions.SqlHandler.__init__">__init__</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#combogenius.database.sql_interactions.SqlHandler.close_cnxn">close_cnxn</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#combogenius.database.sql_interactions.SqlHandler.drop_table">drop_table</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#combogenius.database.sql_interactions.SqlHandler.get_table_columns">get_table_columns</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#combogenius.database.sql_interactions.SqlHandler.insert_many">insert_many</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#combogenius.database.sql_interactions.SqlHandler.truncate_table">truncate_table</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#combogenius.database.sql_interactions.SqlHandler.update_table">update_table</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Models/">Models</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">ComboGenius Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Database</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="overview">Overview</h1>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="combogenius.database.schema"></a>
+  <div class="doc doc-contents first">
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="combogenius.database.schema.checks" class="doc doc-heading">
+          <code>checks</code>
+
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+          <p class="doc doc-class-bases">
+            Bases: <code><span title="combogenius.database.schema.Base">Base</span></code></p>
+
+  
+      <p>Represents the 'checks' table in the database.</p>
+
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Attributes:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>check_number</code></b>
+                  (<code>int</code>)
+              –
+              <div class="doc-md-description">
+                <p>The check number (primary key).</p>
+              </div>
+            </li>
+            <li>
+              <b><code>products</code></b>
+                  (<code>str</code>)
+              –
+              <div class="doc-md-description">
+                <p>The products included in the check.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>combogenius\database\schema.py</code></summary>
+              <pre class="highlight"><code class="language-python">class checks(Base):
+    """
+    Represents the 'checks' table in the database.
+
+    Attributes:
+        check_number (int): The check number (primary key).
+        products (str): The products included in the check.
+    """
+
+    __tablename__ = "checks"
+
+    check_number = Column(Integer, primary_key=True)
+    products = Column(String)</code></pre>
+            </details>
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="combogenius.database.schema.companies" class="doc doc-heading">
+          <code>companies</code>
+
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+          <p class="doc doc-class-bases">
+            Bases: <code><span title="combogenius.database.schema.Base">Base</span></code></p>
+
+  
+      <p>Represents the 'companies' table in the database.</p>
+
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Attributes:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>company_id</code></b>
+                  (<code>int</code>)
+              –
+              <div class="doc-md-description">
+                <p>The company ID (primary key).</p>
+              </div>
+            </li>
+            <li>
+              <b><code>link</code></b>
+                  (<code>str</code>)
+              –
+              <div class="doc-md-description">
+                <p>The company's website link.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>title</code></b>
+                  (<code>str</code>)
+              –
+              <div class="doc-md-description">
+                <p>The company's title or name.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>phone</code></b>
+                  (<code>str</code>)
+              –
+              <div class="doc-md-description">
+                <p>The company's phone number.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>address</code></b>
+                  (<code>str</code>)
+              –
+              <div class="doc-md-description">
+                <p>The company's address.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>district</code></b>
+                  (<code>str</code>)
+              –
+              <div class="doc-md-description">
+                <p>The district where the company is located.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>email</code></b>
+                  (<code>str</code>)
+              –
+              <div class="doc-md-description">
+                <p>The company's email address.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>clicked</code></b>
+                  (<code>int</code>)
+              –
+              <div class="doc-md-description">
+                <p>Indicator if the email has been clicked or not (default is 0).</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>combogenius\database\schema.py</code></summary>
+              <pre class="highlight"><code class="language-python">class companies(Base):
+    """
+    Represents the 'companies' table in the database.
+
+    Attributes:
+        company_id (int): The company ID (primary key).
+        link (str): The company's website link.
+        title (str): The company's title or name.
+        phone (str): The company's phone number.
+        address (str): The company's address.
+        district (str): The district where the company is located.
+        email (str): The company's email address.
+        clicked (int): Indicator if the email has been clicked or not (default is 0).
+    """
+
+    __tablename__ = "companies"
+
+    company_id = Column(Integer, primary_key=True)
+    link = Column(String)
+    title = Column(String)
+    phone = Column(String)
+    address = Column(String)
+    district = Column(String)
+    email = Column(String)
+    clicked = Column(Integer, default=0)</code></pre>
+            </details>
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="combogenius.database.schema.price_list" class="doc doc-heading">
+          <code>price_list</code>
+
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+          <p class="doc doc-class-bases">
+            Bases: <code><span title="combogenius.database.schema.Base">Base</span></code></p>
+
+  
+      <p>Represents the 'price_list' table in the database.</p>
+
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Attributes:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>product_id</code></b>
+                  (<code>int</code>)
+              –
+              <div class="doc-md-description">
+                <p>The product ID (primary key).</p>
+              </div>
+            </li>
+            <li>
+              <b><code>product</code></b>
+                  (<code>str</code>)
+              –
+              <div class="doc-md-description">
+                <p>The product name.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>price</code></b>
+                  (<code>int</code>)
+              –
+              <div class="doc-md-description">
+                <p>The price of the product.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>combogenius\database\schema.py</code></summary>
+              <pre class="highlight"><code class="language-python">class price_list(Base):
+    """
+    Represents the 'price_list' table in the database.
+
+    Attributes:
+        product_id (int): The product ID (primary key).
+        product (str): The product name.
+        price (int): The price of the product.
+    """
+
+    __tablename__ = "price_list"
+
+    product_id = Column(Integer, primary_key=True)
+    product = Column(String)
+    price = Column(Integer)</code></pre>
+            </details>
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+
+</div>
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="combogenius.database.sql_interactions"></a>
+  <div class="doc doc-contents first">
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="combogenius.database.sql_interactions.SqlHandler" class="doc doc-heading">
+          <code>SqlHandler</code>
+
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>A class to handle SQLite database operations.</p>
+
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Attributes:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>dbname</code></b>
+                  (<code>str</code>)
+              –
+              <div class="doc-md-description">
+                <p>The name of the SQLite database.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>table_name</code></b>
+                  (<code>str</code>)
+              –
+              <div class="doc-md-description">
+                <p>The name of the table within the database.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>cnxn</code></b>
+                  (<code><span title="sqlite3.Connection">Connection</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>The SQLite database connection object.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>cursor</code></b>
+                  (<code><span title="sqlite3.Cursor">Cursor</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>The SQLite cursor object.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>combogenius\database\sql_interactions.py</code></summary>
+              <pre class="highlight"><code class="language-python">class SqlHandler:
+    """
+    A class to handle SQLite database operations.
+
+    Attributes:
+        dbname (str): The name of the SQLite database.
+        table_name (str): The name of the table within the database.
+        cnxn (sqlite3.Connection): The SQLite database connection object.
+        cursor (sqlite3.Cursor): The SQLite cursor object.
+    """
+
+    def __init__(self, dbname:str,table_name:str) -&gt; None:
+        """
+        Initializes the SqlHandler class.
+
+        Args:
+            dbname (str): The name of the SQLite database.
+            table_name (str): The name of the table within the database.
+        """   
+
+        self.cnxn=sqlite3.connect(f'{dbname}.db')
+        self.cursor=self.cnxn.cursor()
+        self.dbname=dbname
+        self.table_name=table_name
+
+    def close_cnxn(self)-&gt;None:
+        """
+        Closes the database connection.
+
+        Returns:
+            None
+        """
+        logger.info('commiting the changes')
+        self.cursor.close()
+        self.cnxn.close()
+        logger.info('the connection has been closed')
+
+    def get_table_columns(self)-&gt;list:
+        """
+        Retrieves the list of column names in the table.
+
+        Returns:
+            list: List of column names.
+        """  
+
+        self.cursor.execute(f"PRAGMA table_info({self.table_name});")
+        columns = self.cursor.fetchall()
+
+        column_names = [col[1] for col in columns]
+        logger.info(f'the list of columns: {column_names}')
+        #self.cursor.close()
+
+        return column_names
+
+    def truncate_table(self)-&gt;None:
+        """
+        Truncates the table by dropping all rows.
+
+        Returns:
+            None
+        """
+        query=f"DROP TABLE IF EXISTS {self.table_name};"
+        self.cursor.execute(query)
+        logging.info(f'the {self.table_name} is truncated')
+        #self.cursor.close()
+
+    def drop_table(self):
+        """
+        Drops the entire table from the database.
+
+        Returns:
+            None
+        """   
+        query = f"DROP TABLE IF EXISTS {self.table_name};"
+        logging.info(query)
+        self.cursor.execute(query)
+        self.cnxn.commit()
+        logging.info(f"table '{self.table_name}' deleted.")
+        logger.debug('using drop table function')
+
+    def insert_many(self, df:pd.DataFrame) -&gt; str:
+        """
+        Inserts multiple rows into the table from a DataFrame.
+
+        Args:
+            df (pd.DataFrame): DataFrame containing the data to be inserted.
+
+        Returns:
+            str: Message indicating the status of the operation.
+        """      
+        try:
+            chunksize = 1000  # Adjust as needed
+            total_rows = df.shape[0]
+            num_chunks = (total_rows + chunksize - 1) // chunksize  # Ceiling division to get the number of chunks
+
+            for i in range(num_chunks):
+                start_idx = i * chunksize
+                end_idx = min((i + 1) * chunksize, total_rows)
+                chunk_df = df.iloc[start_idx:end_idx]
+
+                chunk_df = chunk_df.replace(np.nan, None) # for handling NULLS
+                chunk_df.rename(columns=lambda x: x.lower(), inplace=True)
+                columns = list(chunk_df.columns)
+                logger.info(f'BEFORE the column intersection: {columns}')
+                sql_column_names = [i.lower() for i in self.get_table_columns()]
+                columns = list(set(columns) &amp; set(sql_column_names))
+                logger.info(f'AFTER the column intersection: {columns}')
+                ncolumns = list(len(columns) * '?')
+                data_to_insert = chunk_df.loc[:, columns]
+
+                values = [tuple(i) for i in data_to_insert.values]
+                logger.info(f'the shape of the table which is going to be imported {data_to_insert.shape}')
+                if len(columns) &gt; 1:
+                    cols, params = ', '.join(columns), ', '.join(ncolumns)
+                else:
+                    cols, params = columns[0], ncolumns[0]
+
+                logger.info(f'insert structure: colnames: {cols} params: {params}')
+                logger.info(values[0])
+                query = f"""INSERT INTO  {self.table_name} ({cols}) VALUES ({params});"""
+
+                logger.info(f'QUERY: {query}')
+
+                self.cursor.executemany(query, values)
+                try:
+                    for i in self.cursor.messages:
+                        logger.info(i)
+                except:
+                    pass
+
+            self.cnxn.commit()
+            logger.warning('the data is loaded')
+        except sqlite3.IntegrityError as e:
+            logger.error(f"An IntegrityError occurred: {e}")
+            self.cnxn.rollback()
+        except Exception as e:
+            logger.error(f"An error occurred: {e}")
+            self.cnxn.rollback()
+
+    def update_table(dbname, table_name, set_values, condition):
+        """
+        Update records in the specified table based on the provided condition.
+
+        Args:
+        dbname (str): The database name.
+        table_name (str): The table to update.
+        set_values (dict): A dictionary where keys are column names and values are the new data for these columns.
+        condition (str): A SQL condition string for the WHERE clause.
+
+        Returns:
+        None
+        """
+        # Connect to the SQLite database
+        connection = sqlite3.connect(f'{dbname}.db')
+        cursor = connection.cursor()
+
+        # Prepare the SET part of the SQL update statement
+        set_clause = ', '.join([f"{key} = ?" for key in set_values.keys()])
+        values = list(set_values.values())
+
+        # Prepare the SQL update query
+        query = f"UPDATE {table_name} SET {set_clause} WHERE {condition}"
+        try:
+            cursor.execute(query, values)
+            connection.commit()
+            logger.info(f"Rows updated: {cursor.rowcount}")
+        except sqlite3.Error as e:
+            logger.error(f"An error occurred: {e}")
+        finally:
+            cursor.close()
+            connection.close()
+            logger.info("Database connection closed.")</code></pre>
+            </details>
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="combogenius.database.sql_interactions.SqlHandler.__init__" class="doc doc-heading">
+          <code class="highlight language-python">__init__(dbname, table_name)</code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Initializes the SqlHandler class.</p>
+
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>dbname</code></b>
+                  (<code>str</code>)
+              –
+              <div class="doc-md-description">
+                <p>The name of the SQLite database.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>table_name</code></b>
+                  (<code>str</code>)
+              –
+              <div class="doc-md-description">
+                <p>The name of the table within the database.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+          <details class="quote">
+            <summary>Source code in <code>combogenius\database\sql_interactions.py</code></summary>
+            <pre class="highlight"><code class="language-python">def __init__(self, dbname:str,table_name:str) -&gt; None:
+    """
+    Initializes the SqlHandler class.
+
+    Args:
+        dbname (str): The name of the SQLite database.
+        table_name (str): The name of the table within the database.
+    """   
+
+    self.cnxn=sqlite3.connect(f'{dbname}.db')
+    self.cursor=self.cnxn.cursor()
+    self.dbname=dbname
+    self.table_name=table_name</code></pre>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="combogenius.database.sql_interactions.SqlHandler.close_cnxn" class="doc doc-heading">
+          <code class="highlight language-python">close_cnxn()</code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Closes the database connection.</p>
+
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+    <th class="field-name">Returns:</th>
+    <td class="field-body">
+      <ul class="first simple">
+          <li>
+                <code>None</code>
+            –
+            <div class="doc-md-description">
+              <p>None</p>
+            </div>
+          </li>
+      </ul>
+    </td>
+    </tr>
+  </tbody>
+</table>
+          <details class="quote">
+            <summary>Source code in <code>combogenius\database\sql_interactions.py</code></summary>
+            <pre class="highlight"><code class="language-python">def close_cnxn(self)-&gt;None:
+    """
+    Closes the database connection.
+
+    Returns:
+        None
+    """
+    logger.info('commiting the changes')
+    self.cursor.close()
+    self.cnxn.close()
+    logger.info('the connection has been closed')</code></pre>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="combogenius.database.sql_interactions.SqlHandler.drop_table" class="doc doc-heading">
+          <code class="highlight language-python">drop_table()</code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Drops the entire table from the database.</p>
+
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+    <th class="field-name">Returns:</th>
+    <td class="field-body">
+      <ul class="first simple">
+          <li>
+            –
+            <div class="doc-md-description">
+              <p>None</p>
+            </div>
+          </li>
+      </ul>
+    </td>
+    </tr>
+  </tbody>
+</table>
+          <details class="quote">
+            <summary>Source code in <code>combogenius\database\sql_interactions.py</code></summary>
+            <pre class="highlight"><code class="language-python">def drop_table(self):
+    """
+    Drops the entire table from the database.
+
+    Returns:
+        None
+    """   
+    query = f"DROP TABLE IF EXISTS {self.table_name};"
+    logging.info(query)
+    self.cursor.execute(query)
+    self.cnxn.commit()
+    logging.info(f"table '{self.table_name}' deleted.")
+    logger.debug('using drop table function')</code></pre>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="combogenius.database.sql_interactions.SqlHandler.get_table_columns" class="doc doc-heading">
+          <code class="highlight language-python">get_table_columns()</code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Retrieves the list of column names in the table.</p>
+
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+    <th class="field-name">Returns:</th>
+    <td class="field-body">
+      <ul class="first simple">
+          <li>
+<b><code>list</code></b>(                <code>list</code>
+)            –
+            <div class="doc-md-description">
+              <p>List of column names.</p>
+            </div>
+          </li>
+      </ul>
+    </td>
+    </tr>
+  </tbody>
+</table>
+          <details class="quote">
+            <summary>Source code in <code>combogenius\database\sql_interactions.py</code></summary>
+            <pre class="highlight"><code class="language-python">def get_table_columns(self)-&gt;list:
+    """
+    Retrieves the list of column names in the table.
+
+    Returns:
+        list: List of column names.
+    """  
+
+    self.cursor.execute(f"PRAGMA table_info({self.table_name});")
+    columns = self.cursor.fetchall()
+
+    column_names = [col[1] for col in columns]
+    logger.info(f'the list of columns: {column_names}')
+    #self.cursor.close()
+
+    return column_names</code></pre>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="combogenius.database.sql_interactions.SqlHandler.insert_many" class="doc doc-heading">
+          <code class="highlight language-python">insert_many(df)</code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Inserts multiple rows into the table from a DataFrame.</p>
+
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>df</code></b>
+                  (<code><span title="pandas.DataFrame">DataFrame</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>DataFrame containing the data to be inserted.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+    <th class="field-name">Returns:</th>
+    <td class="field-body">
+      <ul class="first simple">
+          <li>
+<b><code>str</code></b>(                <code>str</code>
+)            –
+            <div class="doc-md-description">
+              <p>Message indicating the status of the operation.</p>
+            </div>
+          </li>
+      </ul>
+    </td>
+    </tr>
+  </tbody>
+</table>
+          <details class="quote">
+            <summary>Source code in <code>combogenius\database\sql_interactions.py</code></summary>
+            <pre class="highlight"><code class="language-python">def insert_many(self, df:pd.DataFrame) -&gt; str:
+    """
+    Inserts multiple rows into the table from a DataFrame.
+
+    Args:
+        df (pd.DataFrame): DataFrame containing the data to be inserted.
+
+    Returns:
+        str: Message indicating the status of the operation.
+    """      
+    try:
+        chunksize = 1000  # Adjust as needed
+        total_rows = df.shape[0]
+        num_chunks = (total_rows + chunksize - 1) // chunksize  # Ceiling division to get the number of chunks
+
+        for i in range(num_chunks):
+            start_idx = i * chunksize
+            end_idx = min((i + 1) * chunksize, total_rows)
+            chunk_df = df.iloc[start_idx:end_idx]
+
+            chunk_df = chunk_df.replace(np.nan, None) # for handling NULLS
+            chunk_df.rename(columns=lambda x: x.lower(), inplace=True)
+            columns = list(chunk_df.columns)
+            logger.info(f'BEFORE the column intersection: {columns}')
+            sql_column_names = [i.lower() for i in self.get_table_columns()]
+            columns = list(set(columns) &amp; set(sql_column_names))
+            logger.info(f'AFTER the column intersection: {columns}')
+            ncolumns = list(len(columns) * '?')
+            data_to_insert = chunk_df.loc[:, columns]
+
+            values = [tuple(i) for i in data_to_insert.values]
+            logger.info(f'the shape of the table which is going to be imported {data_to_insert.shape}')
+            if len(columns) &gt; 1:
+                cols, params = ', '.join(columns), ', '.join(ncolumns)
+            else:
+                cols, params = columns[0], ncolumns[0]
+
+            logger.info(f'insert structure: colnames: {cols} params: {params}')
+            logger.info(values[0])
+            query = f"""INSERT INTO  {self.table_name} ({cols}) VALUES ({params});"""
+
+            logger.info(f'QUERY: {query}')
+
+            self.cursor.executemany(query, values)
+            try:
+                for i in self.cursor.messages:
+                    logger.info(i)
+            except:
+                pass
+
+        self.cnxn.commit()
+        logger.warning('the data is loaded')
+    except sqlite3.IntegrityError as e:
+        logger.error(f"An IntegrityError occurred: {e}")
+        self.cnxn.rollback()
+    except Exception as e:
+        logger.error(f"An error occurred: {e}")
+        self.cnxn.rollback()</code></pre>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="combogenius.database.sql_interactions.SqlHandler.truncate_table" class="doc doc-heading">
+          <code class="highlight language-python">truncate_table()</code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Truncates the table by dropping all rows.</p>
+
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+    <th class="field-name">Returns:</th>
+    <td class="field-body">
+      <ul class="first simple">
+          <li>
+                <code>None</code>
+            –
+            <div class="doc-md-description">
+              <p>None</p>
+            </div>
+          </li>
+      </ul>
+    </td>
+    </tr>
+  </tbody>
+</table>
+          <details class="quote">
+            <summary>Source code in <code>combogenius\database\sql_interactions.py</code></summary>
+            <pre class="highlight"><code class="language-python">def truncate_table(self)-&gt;None:
+    """
+    Truncates the table by dropping all rows.
+
+    Returns:
+        None
+    """
+    query=f"DROP TABLE IF EXISTS {self.table_name};"
+    self.cursor.execute(query)
+    logging.info(f'the {self.table_name} is truncated')</code></pre>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="combogenius.database.sql_interactions.SqlHandler.update_table" class="doc doc-heading">
+          <code class="highlight language-python">update_table(dbname, table_name, set_values, condition)</code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Update records in the specified table based on the provided condition.</p>
+<p>Args:
+dbname (str): The database name.
+table_name (str): The table to update.
+set_values (dict): A dictionary where keys are column names and values are the new data for these columns.
+condition (str): A SQL condition string for the WHERE clause.</p>
+<p>Returns:
+None</p>
+
+          <details class="quote">
+            <summary>Source code in <code>combogenius\database\sql_interactions.py</code></summary>
+            <pre class="highlight"><code class="language-python">def update_table(dbname, table_name, set_values, condition):
+    """
+    Update records in the specified table based on the provided condition.
+
+    Args:
+    dbname (str): The database name.
+    table_name (str): The table to update.
+    set_values (dict): A dictionary where keys are column names and values are the new data for these columns.
+    condition (str): A SQL condition string for the WHERE clause.
+
+    Returns:
+    None
+    """
+    # Connect to the SQLite database
+    connection = sqlite3.connect(f'{dbname}.db')
+    cursor = connection.cursor()
+
+    # Prepare the SET part of the SQL update statement
+    set_clause = ', '.join([f"{key} = ?" for key in set_values.keys()])
+    values = list(set_values.values())
+
+    # Prepare the SQL update query
+    query = f"UPDATE {table_name} SET {set_clause} WHERE {condition}"
+    try:
+        cursor.execute(query, values)
+        connection.commit()
+        logger.info(f"Rows updated: {cursor.rowcount}")
+    except sqlite3.Error as e:
+        logger.error(f"An error occurred: {e}")
+    finally:
+        cursor.close()
+        connection.close()
+        logger.info("Database connection closed.")</code></pre>
+          </details>
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+
+</div>
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../API/" class="btn btn-neutral float-left" title="API"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../Models/" class="btn btn-neutral float-right" title="Models">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../API/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../Models/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

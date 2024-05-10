@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Models - ComboGenius Documentation</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Models";
+        var mkdocs_page_input_path = "Models.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> ComboGenius Documentation
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../API/">API</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Database/">Database</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Models</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#combogenius.models.make_combos">make_combos</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#combogenius.models.make_combos.combos">combos</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#combogenius.models.make_combos.combos.__init__">__init__</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#combogenius.models.make_combos.combos.calculate_combo_price">calculate_combo_price</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#combogenius.models.make_combos.combos.has_multiple_components">has_multiple_components</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#combogenius.models.make_combos.combos.make_combos">make_combos</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#combogenius.models.make_combos.combos.visualize_cheap_combos">visualize_cheap_combos</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#combogenius.models.make_combos.combos.visualize_expensive_combos">visualize_expensive_combos</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#combogenius.models.make_combos.combos.visualize_most_frequent_combos">visualize_most_frequent_combos</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">ComboGenius Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Models</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="overview">Overview</h1>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="combogenius.models.make_combos"></a>
+  <div class="doc doc-contents first">
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="combogenius.models.make_combos.combos" class="doc doc-heading">
+          <code>combos</code>
+
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>A class for generating and visualizing product combos.</p>
+
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Attributes:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>df</code></b>
+                  (<code><span title="pandas.DataFrame">DataFrame</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>DataFrame containing product data.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>price_df</code></b>
+                  (<code><span title="pandas.DataFrame">DataFrame</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>DataFrame containing price data.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+            <details class="quote">
+              <summary>Source code in <code>combogenius\models\make_combos.py</code></summary>
+              <pre class="highlight"><code class="language-python">class combos:
+    """
+    A class for generating and visualizing product combos.
+
+    Attributes:
+        df (pd.DataFrame): DataFrame containing product data.
+        price_df (pd.DataFrame): DataFrame containing price data.
+    """
+
+    def __init__(self) -&gt; None:
+        """
+        Initializes the combos class by reading data from the database.
+        """
+        conn = sqlite3.connect('database.db')
+        self.df = pd.read_sql_query("SELECT * FROM checks", conn)
+        self.price_df = pd.read_sql_query("SELECT * FROM price_list", conn)
+        conn.close()
+
+    def has_multiple_components(self, string: str, n: int) -&gt; bool:
+        """
+        Checks if a product combo has at least 'n' components.
+
+        Args:
+            string (str): The product combo string.
+            n (int): Minimum number of components.
+
+        Returns:
+            bool: True if the combo has at least 'n' components, False otherwise.
+        """
+        return len(string.split('/')) &gt;= n
+
+    def calculate_combo_price(self, products: list, discount: float = 10) -&gt; float:
+        """
+        Calculates the total price of a combo.
+
+        Args:
+            products (list): List of products in the combo.
+            discount (float): Discount percentage (default is 10).
+
+        Returns:
+            float: Total price of the combo after discount.
+        """
+        combo_price = 0
+        for product in products:
+            price = self.price_df.loc[self.price_df['product'] == product, 'price'].values
+            combo_price += price
+        return combo_price * (1 - discount / 100)
+
+    def make_combos(self, k: int = 10, discount: float = 10) -&gt; pd.DataFrame:
+        """
+        Generates combos based on product frequency and visualizes them.
+
+        Args:
+            k (int): Maximum number of combos to generate (default is 10).
+            discount (float): Discount percentage (default is 10).
+
+        Returns:
+            pd.DataFrame: DataFrame containing the generated combos.
+        """
+        unique_products = set(self.df['products'])
+        product_frequencies = Counter(unique_products)
+        frequencies = list(product_frequencies.values())
+        unique_products = self.df['products'].unique()
+        product_frequencies = Counter(self.df['products'])
+        frequencies = [product_frequencies[product] for product in unique_products]
+        frequency_table = pd.DataFrame({'Products': unique_products, 'Frequency': frequencies})
+        sorted_frequency_table = frequency_table.sort_values(by='Frequency', ascending=False)
+
+        best_i, best_j = None, None
+        min_len = float('inf')  
+
+        for i in range(3, 5):
+            for j in range(2, int(np.sqrt(len(sorted_frequency_table)))):
+                sorted_frequency_table['Products'] = sorted_frequency_table['Products'].astype(str)
+
+                mask = sorted_frequency_table['Products'].apply(lambda x: self.has_multiple_components(x, i))
+                filtered_table = sorted_frequency_table[mask].copy()
+
+                filtered_table.drop(filtered_table[filtered_table['Frequency'] &lt; j].index, inplace=True)
+
+                length = len(filtered_table) 
+                if length &lt;= k:
+                    mask = sorted_frequency_table['Products'].apply(lambda x: self.has_multiple_components(x, best_i))
+                    filtered_table = sorted_frequency_table[mask].copy()
+                    filtered_table.drop(filtered_table[filtered_table['Frequency'] &lt; best_j].index, inplace=True)
+
+                    # Calculate prices for each combo
+                    filtered_table['Combo_Price'] = filtered_table['Products'].apply(lambda x: self.calculate_combo_price(x.split('/'), discount)[0])
+
+                    return filtered_table
+
+                if length &lt; min_len:  
+                    best_i, best_j = i, j
+                    min_len = length
+
+        mask = sorted_frequency_table['Products'].apply(lambda x: self.has_multiple_components(x, best_i))
+        filtered_table = sorted_frequency_table[mask].copy()
+        filtered_table.drop(filtered_table[filtered_table['Frequency'] &lt; best_j].index, inplace=True)
+
+        # Calculate prices for each combo
+        filtered_table['Combo_Price'] = filtered_table['Products'].apply(lambda x: self.calculate_combo_price(x.split('/'), discount)[0])
+
+        return filtered_table
+
+    def visualize_most_frequent_combos(self, top_n: int = 5):
+        """
+        Visualizes the top most frequent combos in a bar chart.
+
+        Args:
+            top_n (int): Number of top most frequent combos to visualize (default is 5).
+
+        Returns:
+            None
+        """
+        most_frequent_combos = self.df['products'].value_counts().nlargest(top_n)
+        most_frequent_combos.plot(kind='bar', figsize=(10, 6), color='skyblue')
+        plt.title('Top {} Most Frequent Combos'.format(top_n))
+        plt.xlabel('Combo')
+        plt.ylabel('Frequency')
+        plt.xticks(rotation=45)
+        plt.show()
+
+    def visualize_expensive_combos(self, top_n: int = 5):
+        """
+        Visualizes the top most expensive combos in a bar chart.
+
+        Args:
+            top_n (int): Number of top most expensive combos to visualize (default is 5).
+
+        Returns:
+            None
+        """
+        combos_df = self.make_combos(discount=0)
+        sorted_combos = combos_df.nlargest(top_n, 'Combo_Price')
+
+        # Plot the top expensive combos
+        sorted_combos.plot(kind='bar', x='Products', y='Combo_Price', figsize=(10, 6), color='salmon')
+        plt.title('Top {} Expensive Combos'.format(top_n))
+        plt.xlabel('Combo')
+        plt.ylabel('Price')
+        plt.xticks(rotation=45)
+        plt.show()
+
+    def visualize_cheap_combos(self, top_n: int = 5):
+        """
+        Visualizes the top cheapest combos in a bar chart.
+
+        Args:
+            top_n (int): Number of top cheapest combos to visualize (default is 5).
+
+        Returns:
+            None
+        """
+        combos_df = self.make_combos(discount=0)
+        sorted_combos = combos_df.nsmallest(top_n, 'Combo_Price')
+
+        # Plot the top expensive combos
+        sorted_combos.plot(kind='bar', x='Products', y='Combo_Price', figsize=(10, 6), color='salmon')
+        plt.title('Top {} Expensive Combos'.format(top_n))
+        plt.xlabel('Combo')
+        plt.ylabel('Price')
+        plt.xticks(rotation=45)
+        plt.show()</code></pre>
+            </details>
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="combogenius.models.make_combos.combos.__init__" class="doc doc-heading">
+          <code class="highlight language-python">__init__()</code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Initializes the combos class by reading data from the database.</p>
+
+          <details class="quote">
+            <summary>Source code in <code>combogenius\models\make_combos.py</code></summary>
+            <pre class="highlight"><code class="language-python">def __init__(self) -&gt; None:
+    """
+    Initializes the combos class by reading data from the database.
+    """
+    conn = sqlite3.connect('database.db')
+    self.df = pd.read_sql_query("SELECT * FROM checks", conn)
+    self.price_df = pd.read_sql_query("SELECT * FROM price_list", conn)
+    conn.close()</code></pre>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="combogenius.models.make_combos.combos.calculate_combo_price" class="doc doc-heading">
+          <code class="highlight language-python">calculate_combo_price(products, discount=10)</code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Calculates the total price of a combo.</p>
+
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>products</code></b>
+                  (<code>list</code>)
+              –
+              <div class="doc-md-description">
+                <p>List of products in the combo.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>discount</code></b>
+                  (<code>float</code>, default:
+                      <code>10</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Discount percentage (default is 10).</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+    <th class="field-name">Returns:</th>
+    <td class="field-body">
+      <ul class="first simple">
+          <li>
+<b><code>float</code></b>(                <code>float</code>
+)            –
+            <div class="doc-md-description">
+              <p>Total price of the combo after discount.</p>
+            </div>
+          </li>
+      </ul>
+    </td>
+    </tr>
+  </tbody>
+</table>
+          <details class="quote">
+            <summary>Source code in <code>combogenius\models\make_combos.py</code></summary>
+            <pre class="highlight"><code class="language-python">def calculate_combo_price(self, products: list, discount: float = 10) -&gt; float:
+    """
+    Calculates the total price of a combo.
+
+    Args:
+        products (list): List of products in the combo.
+        discount (float): Discount percentage (default is 10).
+
+    Returns:
+        float: Total price of the combo after discount.
+    """
+    combo_price = 0
+    for product in products:
+        price = self.price_df.loc[self.price_df['product'] == product, 'price'].values
+        combo_price += price
+    return combo_price * (1 - discount / 100)</code></pre>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="combogenius.models.make_combos.combos.has_multiple_components" class="doc doc-heading">
+          <code class="highlight language-python">has_multiple_components(string, n)</code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Checks if a product combo has at least 'n' components.</p>
+
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>string</code></b>
+                  (<code>str</code>)
+              –
+              <div class="doc-md-description">
+                <p>The product combo string.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>n</code></b>
+                  (<code>int</code>)
+              –
+              <div class="doc-md-description">
+                <p>Minimum number of components.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+    <th class="field-name">Returns:</th>
+    <td class="field-body">
+      <ul class="first simple">
+          <li>
+<b><code>bool</code></b>(                <code>bool</code>
+)            –
+            <div class="doc-md-description">
+              <p>True if the combo has at least 'n' components, False otherwise.</p>
+            </div>
+          </li>
+      </ul>
+    </td>
+    </tr>
+  </tbody>
+</table>
+          <details class="quote">
+            <summary>Source code in <code>combogenius\models\make_combos.py</code></summary>
+            <pre class="highlight"><code class="language-python">def has_multiple_components(self, string: str, n: int) -&gt; bool:
+    """
+    Checks if a product combo has at least 'n' components.
+
+    Args:
+        string (str): The product combo string.
+        n (int): Minimum number of components.
+
+    Returns:
+        bool: True if the combo has at least 'n' components, False otherwise.
+    """
+    return len(string.split('/')) &gt;= n</code></pre>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="combogenius.models.make_combos.combos.make_combos" class="doc doc-heading">
+          <code class="highlight language-python">make_combos(k=10, discount=10)</code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Generates combos based on product frequency and visualizes them.</p>
+
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>k</code></b>
+                  (<code>int</code>, default:
+                      <code>10</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Maximum number of combos to generate (default is 10).</p>
+              </div>
+            </li>
+            <li>
+              <b><code>discount</code></b>
+                  (<code>float</code>, default:
+                      <code>10</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Discount percentage (default is 10).</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+    <th class="field-name">Returns:</th>
+    <td class="field-body">
+      <ul class="first simple">
+          <li>
+                <code><span title="pandas.DataFrame">DataFrame</span></code>
+            –
+            <div class="doc-md-description">
+              <p>pd.DataFrame: DataFrame containing the generated combos.</p>
+            </div>
+          </li>
+      </ul>
+    </td>
+    </tr>
+  </tbody>
+</table>
+          <details class="quote">
+            <summary>Source code in <code>combogenius\models\make_combos.py</code></summary>
+            <pre class="highlight"><code class="language-python">def make_combos(self, k: int = 10, discount: float = 10) -&gt; pd.DataFrame:
+    """
+    Generates combos based on product frequency and visualizes them.
+
+    Args:
+        k (int): Maximum number of combos to generate (default is 10).
+        discount (float): Discount percentage (default is 10).
+
+    Returns:
+        pd.DataFrame: DataFrame containing the generated combos.
+    """
+    unique_products = set(self.df['products'])
+    product_frequencies = Counter(unique_products)
+    frequencies = list(product_frequencies.values())
+    unique_products = self.df['products'].unique()
+    product_frequencies = Counter(self.df['products'])
+    frequencies = [product_frequencies[product] for product in unique_products]
+    frequency_table = pd.DataFrame({'Products': unique_products, 'Frequency': frequencies})
+    sorted_frequency_table = frequency_table.sort_values(by='Frequency', ascending=False)
+
+    best_i, best_j = None, None
+    min_len = float('inf')  
+
+    for i in range(3, 5):
+        for j in range(2, int(np.sqrt(len(sorted_frequency_table)))):
+            sorted_frequency_table['Products'] = sorted_frequency_table['Products'].astype(str)
+
+            mask = sorted_frequency_table['Products'].apply(lambda x: self.has_multiple_components(x, i))
+            filtered_table = sorted_frequency_table[mask].copy()
+
+            filtered_table.drop(filtered_table[filtered_table['Frequency'] &lt; j].index, inplace=True)
+
+            length = len(filtered_table) 
+            if length &lt;= k:
+                mask = sorted_frequency_table['Products'].apply(lambda x: self.has_multiple_components(x, best_i))
+                filtered_table = sorted_frequency_table[mask].copy()
+                filtered_table.drop(filtered_table[filtered_table['Frequency'] &lt; best_j].index, inplace=True)
+
+                # Calculate prices for each combo
+                filtered_table['Combo_Price'] = filtered_table['Products'].apply(lambda x: self.calculate_combo_price(x.split('/'), discount)[0])
+
+                return filtered_table
+
+            if length &lt; min_len:  
+                best_i, best_j = i, j
+                min_len = length
+
+    mask = sorted_frequency_table['Products'].apply(lambda x: self.has_multiple_components(x, best_i))
+    filtered_table = sorted_frequency_table[mask].copy()
+    filtered_table.drop(filtered_table[filtered_table['Frequency'] &lt; best_j].index, inplace=True)
+
+    # Calculate prices for each combo
+    filtered_table['Combo_Price'] = filtered_table['Products'].apply(lambda x: self.calculate_combo_price(x.split('/'), discount)[0])
+
+    return filtered_table</code></pre>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="combogenius.models.make_combos.combos.visualize_cheap_combos" class="doc doc-heading">
+          <code class="highlight language-python">visualize_cheap_combos(top_n=5)</code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Visualizes the top cheapest combos in a bar chart.</p>
+
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>top_n</code></b>
+                  (<code>int</code>, default:
+                      <code>5</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Number of top cheapest combos to visualize (default is 5).</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+    <th class="field-name">Returns:</th>
+    <td class="field-body">
+      <ul class="first simple">
+          <li>
+            –
+            <div class="doc-md-description">
+              <p>None</p>
+            </div>
+          </li>
+      </ul>
+    </td>
+    </tr>
+  </tbody>
+</table>
+          <details class="quote">
+            <summary>Source code in <code>combogenius\models\make_combos.py</code></summary>
+            <pre class="highlight"><code class="language-python">def visualize_cheap_combos(self, top_n: int = 5):
+    """
+    Visualizes the top cheapest combos in a bar chart.
+
+    Args:
+        top_n (int): Number of top cheapest combos to visualize (default is 5).
+
+    Returns:
+        None
+    """
+    combos_df = self.make_combos(discount=0)
+    sorted_combos = combos_df.nsmallest(top_n, 'Combo_Price')
+
+    # Plot the top expensive combos
+    sorted_combos.plot(kind='bar', x='Products', y='Combo_Price', figsize=(10, 6), color='salmon')
+    plt.title('Top {} Expensive Combos'.format(top_n))
+    plt.xlabel('Combo')
+    plt.ylabel('Price')
+    plt.xticks(rotation=45)
+    plt.show()</code></pre>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="combogenius.models.make_combos.combos.visualize_expensive_combos" class="doc doc-heading">
+          <code class="highlight language-python">visualize_expensive_combos(top_n=5)</code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Visualizes the top most expensive combos in a bar chart.</p>
+
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>top_n</code></b>
+                  (<code>int</code>, default:
+                      <code>5</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Number of top most expensive combos to visualize (default is 5).</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+    <th class="field-name">Returns:</th>
+    <td class="field-body">
+      <ul class="first simple">
+          <li>
+            –
+            <div class="doc-md-description">
+              <p>None</p>
+            </div>
+          </li>
+      </ul>
+    </td>
+    </tr>
+  </tbody>
+</table>
+          <details class="quote">
+            <summary>Source code in <code>combogenius\models\make_combos.py</code></summary>
+            <pre class="highlight"><code class="language-python">def visualize_expensive_combos(self, top_n: int = 5):
+    """
+    Visualizes the top most expensive combos in a bar chart.
+
+    Args:
+        top_n (int): Number of top most expensive combos to visualize (default is 5).
+
+    Returns:
+        None
+    """
+    combos_df = self.make_combos(discount=0)
+    sorted_combos = combos_df.nlargest(top_n, 'Combo_Price')
+
+    # Plot the top expensive combos
+    sorted_combos.plot(kind='bar', x='Products', y='Combo_Price', figsize=(10, 6), color='salmon')
+    plt.title('Top {} Expensive Combos'.format(top_n))
+    plt.xlabel('Combo')
+    plt.ylabel('Price')
+    plt.xticks(rotation=45)
+    plt.show()</code></pre>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="combogenius.models.make_combos.combos.visualize_most_frequent_combos" class="doc doc-heading">
+          <code class="highlight language-python">visualize_most_frequent_combos(top_n=5)</code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Visualizes the top most frequent combos in a bar chart.</p>
+
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>top_n</code></b>
+                  (<code>int</code>, default:
+                      <code>5</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Number of top most frequent combos to visualize (default is 5).</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+    <th class="field-name">Returns:</th>
+    <td class="field-body">
+      <ul class="first simple">
+          <li>
+            –
+            <div class="doc-md-description">
+              <p>None</p>
+            </div>
+          </li>
+      </ul>
+    </td>
+    </tr>
+  </tbody>
+</table>
+          <details class="quote">
+            <summary>Source code in <code>combogenius\models\make_combos.py</code></summary>
+            <pre class="highlight"><code class="language-python">def visualize_most_frequent_combos(self, top_n: int = 5):
+    """
+    Visualizes the top most frequent combos in a bar chart.
+
+    Args:
+        top_n (int): Number of top most frequent combos to visualize (default is 5).
+
+    Returns:
+        None
+    """
+    most_frequent_combos = self.df['products'].value_counts().nlargest(top_n)
+    most_frequent_combos.plot(kind='bar', figsize=(10, 6), color='skyblue')
+    plt.title('Top {} Most Frequent Combos'.format(top_n))
+    plt.xlabel('Combo')
+    plt.ylabel('Frequency')
+    plt.xticks(rotation=45)
+    plt.show()</code></pre>
+          </details>
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+
+</div>
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../Database/" class="btn btn-neutral float-left" title="Database"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../Database/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

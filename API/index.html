@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>API - ComboGenius Documentation</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "API";
+        var mkdocs_page_input_path = "API.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> ComboGenius Documentation
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">API</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#combogenius.api.api">api</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#combogenius.api.api.generate_html_template">generate_html_template</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#combogenius.api.api.index">index</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#combogenius.api.api.mark_interested">mark_interested</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#combogenius.api.api.run_api">run_api</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#combogenius.api.api.send_email">send_email</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Database/">Database</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Models/">Models</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">ComboGenius Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">API</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="overview">Overview</h1>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="combogenius.api.api"></a>
+  <div class="doc doc-contents first">
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="combogenius.api.api.generate_html_template" class="doc doc-heading">
+          <code class="highlight language-python">generate_html_template(combos, discount, custom_html)</code>
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Generates an HTML template for email content.</p>
+
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>combos</code></b>
+                  (<code>list</code>)
+              –
+              <div class="doc-md-description">
+                <p>List of dictionaries containing combo information.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>discount</code></b>
+                  (<code>int</code>)
+              –
+              <div class="doc-md-description">
+                <p>Discount percentage to be applied.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>custom_html</code></b>
+                  (<code>str</code>)
+              –
+              <div class="doc-md-description">
+                <p>Custom HTML content if provided.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+    <th class="field-name">Returns:</th>
+    <td class="field-body">
+      <ul class="first simple">
+          <li>
+<b><code>str</code></b>(                <code>str</code>
+)            –
+            <div class="doc-md-description">
+              <p>Generated HTML content for the email.</p>
+            </div>
+          </li>
+      </ul>
+    </td>
+    </tr>
+  </tbody>
+</table>
+          <details class="quote">
+            <summary>Source code in <code>combogenius\api\api.py</code></summary>
+            <pre class="highlight"><code class="language-python">def generate_html_template(combos: list, discount: int, custom_html: str) -&gt; str:
+    """
+    Generates an HTML template for email content.
+
+    Args:
+        combos (list): List of dictionaries containing combo information.
+        discount (int): Discount percentage to be applied.
+        custom_html (str): Custom HTML content if provided.
+
+    Returns:
+        str: Generated HTML content for the email.
+    """
+    combos_html = ""
+    for combo in combos:
+        combo_html = f"""
+        &lt;div class="combo"&gt;
+            &lt;h2&gt;{combo['name']}&lt;/h2&gt;
+            &lt;p&gt;Price: ${combo['price']}&lt;/p&gt;
+            &lt;p&gt;Get {discount}% off on this combo!&lt;/p&gt;
+            &lt;p class="discount"&gt;Use code: COMBO{combo['code']}&lt;/p&gt;
+        &lt;/div&gt;
+        """
+        combos_html += combo_html
+
+    if custom_html:
+        html_content = custom_html
+    else:
+        html_content = f"""
+        &lt;!DOCTYPE html&gt;
+        &lt;html lang="en"&gt;
+        &lt;head&gt;
+            &lt;meta charset="UTF-8"&gt;
+            &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+            &lt;title&gt;New Combo Offer!&lt;/title&gt;
+            &lt;style&gt;
+                /* CSS Styles */
+                body {{
+                    font-family: Arial, sans-serif;
+                    margin: 0;
+                    padding: 0;
+                    background-color: #f5f5f5;
+                }}
+                .container {{
+                    max-width: 600px;
+                    margin: 0 auto;
+                    padding: 20px;
+                    background-color: #ffffff;
+                    border-radius: 10px;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                }}
+                .header {{
+                    background-color: orange;
+                    color: #ffffff;
+                    padding: 20px;
+                    border-top-left-radius: 10px;
+                    border-top-right-radius: 10px;
+                    text-align: center;
+                }}
+                .content {{
+                    padding: 20px;
+                }}
+                .combo {{
+                    margin-bottom: 20px;
+                    padding: 10px;
+                    background-color: yellow;
+                    border-radius: 5px;
+                }}
+                .combo h2 {{
+                    margin-top: 0;
+                }}
+                .discount {{
+                    font-weight: bold;
+                    color: red;
+                }}
+                .footer {{
+                    text-align: center;
+                    margin-top: 20px;
+                }}
+            &lt;/style&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+            &lt;div class="container"&gt;
+                &lt;div class="header"&gt;
+                    &lt;h1&gt;New Combo Offer!&lt;/h1&gt;
+                &lt;/div&gt;
+                &lt;div class="content"&gt;
+                    {combos_html}
+                &lt;/div&gt;
+                &lt;div class="footer"&gt;
+                    &lt;p&gt;This offer is valid for a limited time only. Visit us today!&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/body&gt;
+        &lt;/html&gt;
+        """
+    return html_content</code></pre>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="combogenius.api.api.index" class="doc doc-heading">
+          <code class="highlight language-python">index()</code>
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Endpoint to check if the FastAPI mailserver is running.</p>
+
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+    <th class="field-name">Returns:</th>
+    <td class="field-body">
+      <ul class="first simple">
+          <li>
+<b><code>dict</code></b>(                <code>dict</code>
+)            –
+            <div class="doc-md-description">
+              <p>A dictionary indicating the status of the server.</p>
+            </div>
+          </li>
+      </ul>
+    </td>
+    </tr>
+  </tbody>
+</table>
+          <details class="quote">
+            <summary>Source code in <code>combogenius\api\api.py</code></summary>
+            <pre class="highlight"><code class="language-python">@app.get("/")
+def index() -&gt; dict:
+    """
+    Endpoint to check if the FastAPI mailserver is running.
+
+    Returns:
+        dict: A dictionary indicating the status of the server.
+    """
+    return {"status": "fastapi mailserver is running"}</code></pre>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="combogenius.api.api.mark_interested" class="doc doc-heading">
+          <code class="highlight language-python">mark_interested(email)</code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Marks an email as interested in the database.</p>
+
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>email</code></b>
+                  (<code>str</code>)
+              –
+              <div class="doc-md-description">
+                <p>Email address to mark as interested.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+    <th class="field-name">Returns:</th>
+    <td class="field-body">
+      <ul class="first simple">
+          <li>
+<b><code>dict</code></b>(                <code>dict</code>
+)            –
+            <div class="doc-md-description">
+              <p>A message indicating the status of the operation.</p>
+            </div>
+          </li>
+      </ul>
+    </td>
+    </tr>
+  </tbody>
+</table>
+          <details class="quote">
+            <summary>Source code in <code>combogenius\api\api.py</code></summary>
+            <pre class="highlight"><code class="language-python">@app.get("/mark_interested/{email}")
+async def mark_interested(email: str) -&gt; dict:
+    """
+    Marks an email as interested in the database.
+
+    Args:
+        email (str): Email address to mark as interested.
+
+    Returns:
+        dict: A message indicating the status of the operation.
+    """
+    try:
+        # Update interested column in the database
+        c.execute("UPDATE companies SET clicked = 1 WHERE email = ?", (email,))
+        conn.commit()
+        return {"message": f"Email {email} marked as interested"}
+    except Exception as e:
+        return {"error": str(e)}</code></pre>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="combogenius.api.api.run_api" class="doc doc-heading">
+          <code class="highlight language-python">run_api()</code>
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Runs the FastAPI server for sending emails.</p>
+
+          <details class="quote">
+            <summary>Source code in <code>combogenius\api\api.py</code></summary>
+            <pre class="highlight"><code class="language-python">def run_api() -&gt; None:
+    """
+    Runs the FastAPI server for sending emails.
+    """
+    uvicorn.run(app, host="127.0.0.1", port=5000,)</code></pre>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="combogenius.api.api.send_email" class="doc doc-heading">
+          <code class="highlight language-python">send_email(recipient, subject, discount, custom_html=None)</code>
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Sends an email to the specified recipient.</p>
+
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>recipient</code></b>
+                  (<code>str</code>)
+              –
+              <div class="doc-md-description">
+                <p>Email address of the recipient.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>subject</code></b>
+                  (<code>str</code>)
+              –
+              <div class="doc-md-description">
+                <p>Subject of the email.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>discount</code></b>
+                  (<code>int</code>)
+              –
+              <div class="doc-md-description">
+                <p>Discount percentage to be applied.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>custom_html</code></b>
+                  (<code>str</code>, default:
+                      <code>None</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Custom HTML content for the email (optional).</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+    <th class="field-name">Returns:</th>
+    <td class="field-body">
+      <ul class="first simple">
+          <li>
+<b><code>dict</code></b>(                <code>dict</code>
+)            –
+            <div class="doc-md-description">
+              <p>A message indicating the status of the email sending process.</p>
+            </div>
+          </li>
+      </ul>
+    </td>
+    </tr>
+  </tbody>
+</table>
+          <details class="quote">
+            <summary>Source code in <code>combogenius\api\api.py</code></summary>
+            <pre class="highlight"><code class="language-python">@app.post("/send_email/")
+def send_email(recipient: str, subject: str, discount: int, custom_html: str = None) -&gt; dict:
+    """
+    Sends an email to the specified recipient.
+
+    Args:
+        recipient (str): Email address of the recipient.
+        subject (str): Subject of the email.
+        discount (int): Discount percentage to be applied.
+        custom_html (str): Custom HTML content for the email (optional).
+
+    Returns:
+        dict: A message indicating the status of the email sending process.
+    """
+    # Database Connection
+    conn = sqlite3.connect('database.db')
+    c = conn.cursor()
+    c.execute("SELECT email FROM companies")
+
+    # Generate Combos
+    combos = [
+        {"name": "Deluxe Burger Combo", "code": "12345", "price": 10},
+        {"name": "Family Pizza Combo", "code": "67890", "price": 20}
+    ]
+
+    # Generate HTML Template
+    html_content = generate_html_template(combos, discount, custom_html)
+
+    # Email Content
+    msg = MIMEMultipart()
+    msg['From'] = USERNAME
+    msg['To'] = recipient
+    msg['Subject'] = subject
+
+    # Attach HTML content
+    msg.attach(MIMEText(html_content, 'html'))
+
+    # SMTP Connection and Sending Email
+    with smtplib.SMTP(HOST, PORT) as server:
+        server.starttls()
+        server.login(USERNAME, PASSWORD)
+        server.sendmail(USERNAME, recipient, msg.as_string())
+        server.quit()
+
+    return {"message": "Emails sent successfully"}</code></pre>
+          </details>
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href=".." class="btn btn-neutral float-left" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../Database/" class="btn btn-neutral float-right" title="Database">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../Database/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
