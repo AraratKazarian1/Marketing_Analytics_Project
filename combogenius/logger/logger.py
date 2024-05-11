@@ -34,7 +34,6 @@ class CustomFormatter(logging.Formatter):
         formatter = logging.Formatter(log_fmt)
         return formatter.format(record)
 
-
 if __name__=='__main__':
     # Just en example
     import os 
