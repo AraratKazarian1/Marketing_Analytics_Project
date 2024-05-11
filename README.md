@@ -22,6 +22,7 @@ Endpoint to mark an email in the database as interested - http://127.0.0.1:5000/
 ## PyPi Link
 https://pypi.org/project/combogenius/
 
+
 ## How to Use ComboGenius Package
 
 ### Import Necessary Functions
