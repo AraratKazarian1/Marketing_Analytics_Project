@@ -36,6 +36,33 @@ import pandas as pd
 ```
 
 ### Create and Load Data into Database
+Before using ComboGenius, ensure your database tables follow this structure:
+```python
+class checks(Base):
+    __tablename__ = "checks"
+
+    check_number = Column(Integer, primary_key=True)
+    products = Column(String)
+
+class companies(Base):
+    __tablename__ = "companies"
+
+    company_id = Column(Integer, primary_key=True)
+    link = Column(String)
+    title = Column(String)
+    phone = Column(String)
+    address = Column(String)
+    district = Column(String)
+    email = Column(String)
+    clicked = Column(Integer, default=0)
+
+class price_list(Base):
+    __tablename__ = "price_list"
+
+    product_id = Column(Integer, primary_key=True)
+    product = Column(String)
+    price = Column(Integer)
+```
 Instantiate SqlHandler objects for each database table ('checks', 'companies', 'price_list'), and load the respective data into the database.
 ```python
 Inst  = SqlHandler('database', 'checks')
